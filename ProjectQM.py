@@ -213,8 +213,8 @@ def get_signals():
                 if((first_sequence_lowest_open > third_sequence_highest_close     and
                     first_sequence_lowest_open > fourth_sequence_highest_close    and
                     first_sequence_lowest_open > fifth_sequence_highest_close)):
-                    if(fourth_sequence_lowest_close < second_sequence_lowest_low):
-                        if(fifth_sequence_highest_close > third_sequence_highest_high):
+                    if(fourth_sequence_lowest_close < second_sequence_lowest_close):
+                        if(fifth_sequence_highest_close > third_sequence_highest_close):
                             signal = 'BUY '
                             beep = 1
                 
@@ -227,8 +227,8 @@ def get_signals():
                 if((first_sequence_highest_open < third_sequence_lowest_close     and
                     first_sequence_highest_open < fourth_sequence_lowest_close    and
                     first_sequence_highest_open < fifth_sequence_lowest_close)):
-                    if(fourth_sequence_highest_close > second_sequence_highest_high):
-                        if(fifth_sequence_lowest_close < third_sequence_lowest_low):
+                    if(fourth_sequence_highest_close > second_sequence_highest_close):
+                        if(fifth_sequence_lowest_close < third_sequence_lowest_close):
                             signal = 'SELL'
                             beep = 1
 
