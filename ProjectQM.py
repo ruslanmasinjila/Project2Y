@@ -1,5 +1,5 @@
 ##########################################################################################
-# ProjectQMLR (PROJECT QUASIMODO LOW-RISK)
+# ProjectQMMR (PROJECT QUASIMODO MEDIUM-RISK)
 # AUTHOR: RUSLAN MASINJILA
 # USAGE: python ProjectQM.py <scan | step> <offset>
 ##########################################################################################
@@ -213,8 +213,8 @@ def get_signals():
                 if((first_sequence_lowest_low > third_sequence_highest_high     and
                     first_sequence_lowest_low > fourth_sequence_highest_high    and
                     first_sequence_lowest_low > fifth_sequence_highest_high)):
-                    if(fourth_sequence_lowest_close < second_sequence_lowest_low and fourth_sequence_lowest_close < third_sequence_lowest_low):
-                        if(fifth_sequence_highest_close > third_sequence_highest_high and fifth_sequence_highest_close > fourth_sequence_highest_high):
+                    if(fourth_sequence_lowest_close < second_sequence_lowest_low):
+                        if(fifth_sequence_highest_close > third_sequence_highest_high):
                             signal = 'BUY '
                             beep = 1
                 
@@ -227,8 +227,8 @@ def get_signals():
                 if((first_sequence_highest_high < third_sequence_lowest_low     and
                     first_sequence_highest_high < fourth_sequence_lowest_low    and
                     first_sequence_highest_high < fifth_sequence_lowest_low)):
-                    if(fourth_sequence_highest_close > second_sequence_highest_high and fourth_sequence_highest_close > third_sequence_highest_high):
-                        if(fifth_sequence_lowest_close < third_sequence_lowest_low and fifth_sequence_lowest_close < fourth_sequence_lowest_low):
+                    if(fourth_sequence_highest_close > second_sequence_highest_high):
+                        if(fifth_sequence_lowest_close < third_sequence_lowest_low):
                             signal = 'SELL'
                             beep = 1
 
