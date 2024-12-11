@@ -1,5 +1,5 @@
 ##########################################################################################
-# ProjectQMMR (PROJECT QUASIMODO MEDIUM-RISK)
+# ProjectQMHR (PROJECT QUASIMODO HIGH-RISK)
 # AUTHOR: RUSLAN MASINJILA
 # USAGE: python ProjectQM.py <scan | step> <offset>
 ##########################################################################################
@@ -210,9 +210,9 @@ def get_signals():
                 third_sequence_is_green     and 
                 fourth_sequence_is_red      and
                 fifth_sequence_is_green)):
-                if((first_sequence_lowest_low > third_sequence_highest_high     and
-                    first_sequence_lowest_low > fourth_sequence_highest_high    and
-                    first_sequence_lowest_low > fifth_sequence_highest_high)):
+                if((first_sequence_lowest_open > third_sequence_highest_close     and
+                    first_sequence_lowest_open > fourth_sequence_highest_close    and
+                    first_sequence_lowest_open > fifth_sequence_highest_close)):
                     if(fourth_sequence_lowest_close < second_sequence_lowest_low):
                         if(fifth_sequence_highest_close > third_sequence_highest_high):
                             signal = 'BUY '
@@ -224,9 +224,9 @@ def get_signals():
                 third_sequence_is_red       and 
                 fourth_sequence_is_green    and
                 fifth_sequence_is_red)): 
-                if((first_sequence_highest_high < third_sequence_lowest_low     and
-                    first_sequence_highest_high < fourth_sequence_lowest_low    and
-                    first_sequence_highest_high < fifth_sequence_lowest_low)):
+                if((first_sequence_highest_open < third_sequence_lowest_close     and
+                    first_sequence_highest_open < fourth_sequence_lowest_close    and
+                    first_sequence_highest_open < fifth_sequence_lowest_close)):
                     if(fourth_sequence_highest_close > second_sequence_highest_high):
                         if(fifth_sequence_lowest_close < third_sequence_lowest_low):
                             signal = 'SELL'
