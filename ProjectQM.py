@@ -1,5 +1,5 @@
 ##########################################################################################
-# ProjectQM (PROJECT QUASIMODO)
+# ProjectQMLR (PROJECT QUASIMODO LOW-RISK)
 # AUTHOR: RUSLAN MASINJILA
 # USAGE: python ProjectQM.py <scan | step> <offset>
 ##########################################################################################
