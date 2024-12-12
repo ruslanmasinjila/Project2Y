@@ -1,5 +1,5 @@
 ##########################################################################################
-# ProjectQMHR (PROJECT QUASIMODO HIGH RISK)
+# ProjectQM (PROJECT QUASIMODO)
 # AUTHOR: RUSLAN MASINJILA
 # USAGE: python ProjectQM.py <scan | step> <offset>
 ##########################################################################################
@@ -195,35 +195,37 @@ def get_signals():
                 second_sequence_is_green    and 
                 third_sequence_is_red       and 
                 fourth_sequence_is_green)):
-                if((first_sequence_highest_high > second_sequence_highest_high and
-                    first_sequence_highest_high > third_sequence_highest_high  and
-                    first_sequence_highest_high > fourth_sequence_highest_high )):  
-                    if(third_sequence_lowest_low < first_sequence_lowest_low):
-                        if(fourth_sequence_highest_high > second_sequence_highest_high):
+                if((first_sequence_highest_open > second_sequence_highest_high and
+                    first_sequence_highest_open > third_sequence_highest_high  and
+                    first_sequence_highest_open > fourth_sequence_highest_high )):  
+                    if(third_sequence_lowest_close < first_sequence_lowest_low):
+                        if(fourth_sequence_highest_close > second_sequence_highest_high):
                             if(first_sequence_lowest_low < second_sequence_lowest_low):
                                 if(second_sequence_highest_high > third_sequence_highest_high):
                                     if(third_sequence_lowest_low < fourth_sequence_lowest_low):
-                                        difference = abs((first_sequence_highest_high - fourth_sequence_highest_high)/(symbol_info.point)) - spread
-                                        if(difference >= 50):
-                                            signal = 'BUY '
-                                            beep = 1
+                                        if(fourth_sequence_lowest_open < second_sequence_lowest_low):
+                                            difference = abs((first_sequence_highest_high - fourth_sequence_highest_high)/(symbol_info.point)) - spread
+                                            if(difference >= 10):
+                                                signal = 'BUY '
+                                                beep = 1
             
             if((first_sequence_is_green     and 
                 second_sequence_is_red      and 
                 third_sequence_is_green     and 
                 fourth_sequence_is_red)):
-                if((first_sequence_lowest_low < second_sequence_lowest_low and
-                    first_sequence_lowest_low < third_sequence_lowest_low  and
-                    first_sequence_lowest_low < fourth_sequence_lowest_low )):
-                    if(third_sequence_highest_high > first_sequence_highest_high):
-                        if(fourth_sequence_lowest_low < second_sequence_lowest_low):
+                if((first_sequence_lowest_open < second_sequence_lowest_low and
+                    first_sequence_lowest_open < third_sequence_lowest_low  and
+                    first_sequence_lowest_open < fourth_sequence_lowest_low )):
+                    if(third_sequence_highest_close > first_sequence_highest_high):
+                        if(fourth_sequence_lowest_close < second_sequence_lowest_low):
                             if(first_sequence_highest_high > second_sequence_highest_high):
                                 if(second_sequence_lowest_low < third_sequence_lowest_low):
-                                    if(third_sequence_highest_high > fourth_sequence_highest_high):                    
-                                        difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
-                                        if(difference >= 50):
-                                            signal = 'SELL'
-                                            beep = 1
+                                    if(third_sequence_highest_high > fourth_sequence_highest_high):   
+                                        if(fourth_sequence_highest_open > second_sequence_highest_high):
+                                            difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
+                                            if(difference >= 10):
+                                                signal = 'SELL'
+                                                beep = 1
 
             ##########################################################################################
             
