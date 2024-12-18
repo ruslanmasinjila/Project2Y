@@ -214,11 +214,11 @@ def get_signals():
                     first_sequence_lowest_open < fourth_sequence_lowest_low )):
                     if(fourth_sequence_highest_open > second_sequence_highest_high):
                         if(length_fourth_sequence==1):
-                            pass
-                        difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
-                        if(difference >= 10):
-                            signal = 'SELL'
-                            beep = 1
+                            if(fourth_sequence_highest_open > second_sequence_highest_high and fourth_sequence_lowest_close < second_sequence_lowest_low):
+                                difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
+                                if(difference >= 10):
+                                    signal = 'SELL'
+                                    beep = 1
 
             ##########################################################################################
             
