@@ -200,10 +200,11 @@ def get_signals():
                     first_sequence_highest_open > fourth_sequence_highest_high )):  
                         if(length_fourth_sequence==1):
                             if(fourth_sequence_lowest_open < second_sequence_lowest_low and fourth_sequence_highest_close >second_sequence_highest_high):
-                                difference = abs((first_sequence_highest_high - fourth_sequence_highest_high)/(symbol_info.point)) - spread
-                                if(difference >= 10):
-                                    signal = 'BUY '
-                                    beep = 1
+                                if(fourth_sequence_highest_close > third_sequence_highest_high):
+                                    difference = abs((first_sequence_highest_high - fourth_sequence_highest_high)/(symbol_info.point)) - spread
+                                    if(difference >= 10):
+                                        signal = 'BUY '
+                                        beep = 1
             
             if((first_sequence_is_green     and 
                 second_sequence_is_red      and 
@@ -215,10 +216,11 @@ def get_signals():
                     if(fourth_sequence_highest_open > second_sequence_highest_high):
                         if(length_fourth_sequence==1):
                             if(fourth_sequence_highest_open > second_sequence_highest_high and fourth_sequence_lowest_close < second_sequence_lowest_low):
-                                difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
-                                if(difference >= 10):
-                                    signal = 'SELL'
-                                    beep = 1
+                                if(fourth_sequence_lowest_close <third_sequence_lowest_low):
+                                    difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
+                                    if(difference >= 10):
+                                        signal = 'SELL'
+                                        beep = 1
 
             ##########################################################################################
             
