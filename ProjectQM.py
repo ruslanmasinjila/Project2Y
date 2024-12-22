@@ -128,96 +128,151 @@ def get_signals():
             # Sort the merged list based on the first element of each inner list
             sorted_merged_list = sorted(merged_list, key=lambda x: x[0])
             ##########################################################################################
+ 
+            W8_indices = sorted_merged_list[-1]
+            W7_indices = sorted_merged_list[-2] 
+            W6_indices = sorted_merged_list[-3]
+            W5_indices = sorted_merged_list[-4]
+            W4_indices = sorted_merged_list[-5]
+            W3_indices  = sorted_merged_list[-6]
+            W2_indices = sorted_merged_list[-7]
+            W1_indices  = sorted_merged_list[-8]
             
-            fourth_sequence_indices = sorted_merged_list[-1]
-            third_sequence_indices  = sorted_merged_list[-2]
-            second_sequence_indices = sorted_merged_list[-3]
-            first_sequence_indices  = sorted_merged_list[-4]
+            length_W8  = len(W8_indices)   
+            length_W7  = len(W7_indices)
+            length_W6  = len(W6_indices)
+            length_W5  = len(W5_indices)
+            length_W4  = len(W4_indices)
+            length_W3  = len(W3_indices)
+            length_W2  = len(W2_indices)
+            length_W1  = len(W1_indices)
             
+            W8_head_open   = rates_frame['open'].iloc[W8_indices[-1]]
+            W8_head_close  = rates_frame['close'].iloc[W8_indices[-1]]
+            W8_IS_G = ( W8_head_close - W8_head_open ) > 0
+            W8_IS_R   = ( W8_head_close - W8_head_open ) < 0
             
-            length_fourth_sequence  = len(fourth_sequence_indices)
-            length_third_sequence   = len(third_sequence_indices)
-            length_second_sequence  = len(second_sequence_indices)
-            length_first_sequence   = len(first_sequence_indices)
+            W7_head_open   = rates_frame['open'].iloc[W7_indices[-1]]
+            W7_head_close  = rates_frame['close'].iloc[W7_indices[-1]]
+            W7_IS_G = ( W7_head_close - W7_head_open ) > 0
+            W7_IS_R   = ( W7_head_close - W7_head_open ) < 0
+ 
+            W6_head_open   = rates_frame['open'].iloc[W6_indices[-1]]
+            W6_head_close  = rates_frame['close'].iloc[W6_indices[-1]]
+            W6_IS_G = ( W6_head_close - W6_head_open ) > 0
+            W6_IS_R   = ( W6_head_close - W6_head_open ) < 0
             
-            fourth_sequence_head_open   = rates_frame['open'].iloc[fourth_sequence_indices[-1]]
-            fourth_sequence_head_close  = rates_frame['close'].iloc[fourth_sequence_indices[-1]]
-            fourth_sequence_is_green = ( fourth_sequence_head_close - fourth_sequence_head_open ) > 0
-            fourth_sequence_is_red   = ( fourth_sequence_head_close - fourth_sequence_head_open ) < 0
+            W5_head_open   = rates_frame['open'].iloc[W5_indices[-1]]
+            W5_head_close  = rates_frame['close'].iloc[W5_indices[-1]]
+            W5_IS_G = ( W5_head_close - W5_head_open ) > 0
+            W5_IS_R   = ( W5_head_close - W5_head_open ) < 0
             
-            third_sequence_head_open   = rates_frame['open'].iloc[third_sequence_indices[-1]]
-            third_sequence_head_close  = rates_frame['close'].iloc[third_sequence_indices[-1]]
-            third_sequence_is_green = ( third_sequence_head_close -third_sequence_head_open ) > 0
-            third_sequence_is_red   = ( third_sequence_head_close - third_sequence_head_open ) < 0
+            W4_head_open   = rates_frame['open'].iloc[W4_indices[-1]]
+            W4_head_close  = rates_frame['close'].iloc[W4_indices[-1]]
+            W4_IS_G = ( W4_head_close - W4_head_open ) > 0
+            W4_IS_R   = ( W4_head_close - W4_head_open ) < 0
             
-            second_sequence_head_open   = rates_frame['open'].iloc[second_sequence_indices[-1]]
-            second_sequence_head_close  = rates_frame['close'].iloc[second_sequence_indices[-1]]
-            second_sequence_is_green = ( second_sequence_head_close -second_sequence_head_open ) > 0
-            second_sequence_is_red   = ( second_sequence_head_close - second_sequence_head_open ) < 0
+            W3_head_open   = rates_frame['open'].iloc[W3_indices[-1]]
+            W3_head_close  = rates_frame['close'].iloc[W3_indices[-1]]
+            W3_IS_G = ( W3_head_close -W3_head_open ) > 0
+            W3_IS_R   = ( W3_head_close - W3_head_open ) < 0
             
-            first_sequence_head_open   = rates_frame['open'].iloc[first_sequence_indices[-1]]
-            first_sequence_head_close  = rates_frame['close'].iloc[first_sequence_indices[-1]]
-            first_sequence_is_green = ( first_sequence_head_close -first_sequence_head_open ) > 0
-            first_sequence_is_red   = ( first_sequence_head_close - first_sequence_head_open ) < 0
+            W2_head_open   = rates_frame['open'].iloc[W2_indices[-1]]
+            W2_head_close  = rates_frame['close'].iloc[W2_indices[-1]]
+            W2_IS_G = ( W2_head_close -W2_head_open ) > 0
+            W2_IS_R   = ( W2_head_close - W2_head_open ) < 0
             
-            fourth_sequence_highest_open = rates_frame['open'].iloc[fourth_sequence_indices].max()
-            fourth_sequence_lowest_open  = rates_frame['open'].iloc[fourth_sequence_indices].min()
-            fourth_sequence_highest_high  = rates_frame['high'].iloc[fourth_sequence_indices].max()
-            fourth_sequence_lowest_low    = rates_frame['low'].iloc[fourth_sequence_indices].min()
-            fourth_sequence_highest_close = rates_frame['close'].iloc[fourth_sequence_indices].max()
-            fourth_sequence_lowest_close  = rates_frame['close'].iloc[fourth_sequence_indices].min()
+            W1_head_open   = rates_frame['open'].iloc[W1_indices[-1]]
+            W1_head_close  = rates_frame['close'].iloc[W1_indices[-1]]
+            W1_IS_G = ( W1_head_close -W1_head_open ) > 0
+            W1_IS_R   = ( W1_head_close - W1_head_open ) < 0
+            
+            W8_HO = rates_frame['open'].iloc[W8_indices].max()
+            W8_LO  = rates_frame['open'].iloc[W8_indices].min()
+            W8_HH  = rates_frame['high'].iloc[W8_indices].max()
+            W8_LL    = rates_frame['low'].iloc[W8_indices].min()
+            W8_HC = rates_frame['close'].iloc[W8_indices].max()
+            W8_LC  = rates_frame['close'].iloc[W8_indices].min()
+            
+            W7_HO = rates_frame['open'].iloc[W7_indices].max()
+            W7_LO  = rates_frame['open'].iloc[W7_indices].min()
+            W7_HH  = rates_frame['high'].iloc[W7_indices].max()
+            W7_LL    = rates_frame['low'].iloc[W7_indices].min()
+            W7_HC = rates_frame['close'].iloc[W7_indices].max()
+            W7_LC  = rates_frame['close'].iloc[W7_indices].min()
+            
+            W6_HO = rates_frame['open'].iloc[W6_indices].max()
+            W6_LO  = rates_frame['open'].iloc[W6_indices].min()
+            W6_HH  = rates_frame['high'].iloc[W6_indices].max()
+            W6_LL    = rates_frame['low'].iloc[W6_indices].min()
+            W6_HC = rates_frame['close'].iloc[W6_indices].max()
+            W6_LC  = rates_frame['close'].iloc[W6_indices].min()
+            
+            W5_HO = rates_frame['open'].iloc[W5_indices].max()
+            W5_LO  = rates_frame['open'].iloc[W5_indices].min()
+            W5_HH  = rates_frame['high'].iloc[W5_indices].max()
+            W5_LL    = rates_frame['low'].iloc[W5_indices].min()
+            W5_HC = rates_frame['close'].iloc[W5_indices].max()
+            W5_LC  = rates_frame['close'].iloc[W5_indices].min()
+            
+            W4_HO = rates_frame['open'].iloc[W4_indices].max()
+            W4_LO  = rates_frame['open'].iloc[W4_indices].min()
+            W4_HH  = rates_frame['high'].iloc[W4_indices].max()
+            W4_LL    = rates_frame['low'].iloc[W4_indices].min()
+            W4_HC = rates_frame['close'].iloc[W4_indices].max()
+            W4_LC  = rates_frame['close'].iloc[W4_indices].min()
 
-            third_sequence_highest_open = rates_frame['open'].iloc[third_sequence_indices].max()
-            third_sequence_lowest_open  = rates_frame['open'].iloc[third_sequence_indices].min()
-            third_sequence_highest_high  = rates_frame['high'].iloc[third_sequence_indices].max()
-            third_sequence_lowest_low    = rates_frame['low'].iloc[third_sequence_indices].min()
-            third_sequence_highest_close = rates_frame['close'].iloc[third_sequence_indices].max()
-            third_sequence_lowest_close  = rates_frame['close'].iloc[third_sequence_indices].min()            
+            W3_HO = rates_frame['open'].iloc[W3_indices].max()
+            W3_LO  = rates_frame['open'].iloc[W3_indices].min()
+            W3_HH  = rates_frame['high'].iloc[W3_indices].max()
+            W3_LL    = rates_frame['low'].iloc[W3_indices].min()
+            W3_HC = rates_frame['close'].iloc[W3_indices].max()
+            W3_LC  = rates_frame['close'].iloc[W3_indices].min()            
 
-            second_sequence_highest_open = rates_frame['open'].iloc[second_sequence_indices].max()
-            second_sequence_lowest_open  = rates_frame['open'].iloc[second_sequence_indices].min()
-            second_sequence_highest_high  = rates_frame['high'].iloc[second_sequence_indices].max()
-            second_sequence_lowest_low    = rates_frame['low'].iloc[second_sequence_indices].min()
-            second_sequence_highest_close = rates_frame['close'].iloc[second_sequence_indices].max()
-            second_sequence_lowest_close  = rates_frame['close'].iloc[second_sequence_indices].min()
+            W2_HO = rates_frame['open'].iloc[W2_indices].max()
+            W2_LO  = rates_frame['open'].iloc[W2_indices].min()
+            W2_HH  = rates_frame['high'].iloc[W2_indices].max()
+            W2_LL    = rates_frame['low'].iloc[W2_indices].min()
+            W2_HC = rates_frame['close'].iloc[W2_indices].max()
+            W2_LC  = rates_frame['close'].iloc[W2_indices].min()
             
-            first_sequence_highest_open = rates_frame['open'].iloc[first_sequence_indices].max()
-            first_sequence_lowest_open  = rates_frame['open'].iloc[first_sequence_indices].min()
-            first_sequence_highest_high  = rates_frame['high'].iloc[first_sequence_indices].max()
-            first_sequence_lowest_low    = rates_frame['low'].iloc[first_sequence_indices].min()
-            first_sequence_highest_close = rates_frame['close'].iloc[first_sequence_indices].max()
-            first_sequence_lowest_close  = rates_frame['close'].iloc[first_sequence_indices].min()           
+            W1_HO = rates_frame['open'].iloc[W1_indices].max()
+            W1_LO  = rates_frame['open'].iloc[W1_indices].min()
+            W1_HH  = rates_frame['high'].iloc[W1_indices].max()
+            W1_LL    = rates_frame['low'].iloc[W1_indices].min()
+            W1_HC = rates_frame['close'].iloc[W1_indices].max()
+            W1_LC  = rates_frame['close'].iloc[W1_indices].min()           
 
                              
             ##########################################################################################
             
-            if((first_sequence_is_red       and 
-                second_sequence_is_green    and 
-                third_sequence_is_red       and 
-                fourth_sequence_is_green)):
-                if((first_sequence_highest_open > second_sequence_highest_high and
-                    first_sequence_highest_open > third_sequence_highest_high  and
-                    first_sequence_highest_open > fourth_sequence_highest_high )):  
-                        if(length_fourth_sequence==1):
-                            if(fourth_sequence_lowest_open < second_sequence_lowest_low and fourth_sequence_highest_close >second_sequence_highest_high):
-                                if(fourth_sequence_highest_close > third_sequence_highest_high):
-                                    difference = abs((first_sequence_highest_high - fourth_sequence_highest_high)/(symbol_info.point)) - spread
+            if((W1_IS_R       and 
+                W2_IS_G    and 
+                W3_IS_R       and 
+                W4_IS_G)):
+                if((W1_HO > W2_HH and
+                    W1_HO > W3_HH  and
+                    W1_HO > W4_HH )):  
+                        if(length_W4==1):
+                            if(W4_LO < W2_LL and W4_HC >W2_HH):
+                                if(W4_HC > W3_HH):
+                                    difference = abs((W1_HH - W4_HH)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'BUY '
                                         beep = 1
             
-            if((first_sequence_is_green     and 
-                second_sequence_is_red      and 
-                third_sequence_is_green     and 
-                fourth_sequence_is_red)):
-                if((first_sequence_lowest_open < second_sequence_lowest_low and
-                    first_sequence_lowest_open < third_sequence_lowest_low  and
-                    first_sequence_lowest_open < fourth_sequence_lowest_low )):
-                    if(fourth_sequence_highest_open > second_sequence_highest_high):
-                        if(length_fourth_sequence==1):
-                            if(fourth_sequence_highest_open > second_sequence_highest_high and fourth_sequence_lowest_close < second_sequence_lowest_low):
-                                if(fourth_sequence_lowest_close <third_sequence_lowest_low):
-                                    difference = abs((first_sequence_lowest_low - fourth_sequence_lowest_low)/(symbol_info.point)) - spread
+            if((W1_IS_G     and 
+                W2_IS_R      and 
+                W3_IS_G     and 
+                W4_IS_R)):
+                if((W1_LO < W2_LL and
+                    W1_LO < W3_LL  and
+                    W1_LO < W4_LL )):
+                    if(W4_HO > W2_HH):
+                        if(length_W4==1):
+                            if(W4_HO > W2_HH and W4_LC < W2_LL):
+                                if(W4_LC <W3_LL):
+                                    difference = abs((W1_LL - W4_LL)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'SELL'
                                         beep = 1
