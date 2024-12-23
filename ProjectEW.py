@@ -251,7 +251,7 @@ def get_signals():
                     if(all(W1_LL > HH for HH in [W4_HH,W5_HH,W6_HH,W7_HH,W8_HH]) and all(W2_LL > HH for HH in [W4_HH,W5_HH,W6_HH,W7_HH,W8_HH])):
                         if(all(W5_LL < LL for LL in [W3_LL,W4_LL]) or all(W6_LL < LL for LL in [W3_LL,W4_LL])):
                             if(all(W5_LL < LL for LL in [W7_LL,W8_LL]) or all(W6_LL < LL for LL in [W7_LL,W8_LL])):
-                                if(all(W8_HC > HH for HH in [W4_HH,W6_HH])):
+                                if(all(W8_HC > HH for HH in [W4_HH,W5_HH,W6_HH,W7_HH])):
                                     difference = abs((W1_LL - W4_LL)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'BUY '
@@ -262,7 +262,7 @@ def get_signals():
                     if(all(W1_HH <  LL for LL in [W4_LL,W5_LL,W6_LL,W7_LL,W8_LL]) and all(W2_HH <  LL for LL in [W4_LL,W5_LL,W6_LL,W7_LL,W8_LL])):
                         if(all(W5_HH > HH for HH in[ W3_HH,W4_HH]) or all(W6_HH > HH for HH in[ W3_HH,W4_HH])):
                             if(all(W5_HH > HH for HH in[ W7_HH,W8_HH]) or all(W6_HH > HH for HH in[ W7_HH,W8_HH])):
-                                if(all(W8_LC < LL for LL in [W4_LL,W6_LL])):
+                                if(all(W8_LC < LL for LL in [W4_LL,W5_LL,W6_LL,W7_LL])):
                                     difference = abs((W1_HH - W4_HH)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'SELL'
