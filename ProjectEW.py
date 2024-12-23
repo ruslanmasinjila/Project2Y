@@ -1,7 +1,7 @@
 ##########################################################################################
-# ProjectQM (PROJECT QUASIMODO)
+# ProjectEW (PROJECT ELLIOTT WAVES)
 # AUTHOR: RUSLAN MASINJILA
-# USAGE: python ProjectQM.py <scan | step> <offset>
+# USAGE: python ProjectEW.py <scan | step> <offset>
 ##########################################################################################
 
 import MetaTrader5 as mt5
@@ -61,7 +61,7 @@ sleep_time          = 5
 
 offset              = 0
 if len(sys.argv) != 3:
-    print("USAGE: python ProjectQM.py <scan | step> <offset>")
+    print("USAGE: python ProjectEW.py <scan | step> <offset>")
     sys.exit(1)
     
 mode   = sys.argv[1]
@@ -251,6 +251,7 @@ def get_signals():
                     if(all(W1_LL > HH for HH in [W4_HH,W5_HH,W6_HH,W7_HH,W8_HH]) and all(W2_LL > HH for HH in [W4_HH,W5_HH,W6_HH,W7_HH,W8_HH])):
                         if(all(W5_LL < LL for LL in [W3_LL,W4_LL]) or all(W6_LL < LL for LL in [W3_LL,W4_LL])):
                             if(all(W5_LL < LL for LL in [W7_LL,W8_LL]) or all(W6_LL < LL for LL in [W7_LL,W8_LL])):
+                                if(all(W8_HC > HH for HH in [W4_HH,W6_HH])):
                                     difference = abs((W1_LL - W4_LL)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'BUY '
@@ -261,6 +262,7 @@ def get_signals():
                     if(all(W1_HH <  LL for LL in [W4_LL,W5_LL,W6_LL,W7_LL,W8_LL]) and all(W2_HH <  LL for LL in [W4_LL,W5_LL,W6_LL,W7_LL,W8_LL])):
                         if(all(W5_HH > HH for HH in[ W3_HH,W4_HH]) or all(W6_HH > HH for HH in[ W3_HH,W4_HH])):
                             if(all(W5_HH > HH for HH in[ W7_HH,W8_HH]) or all(W6_HH > HH for HH in[ W7_HH,W8_HH])):
+                                if(all(W8_LC < LL for LL in [W4_LL,W6_LL])):
                                     difference = abs((W1_HH - W4_HH)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'SELL'
