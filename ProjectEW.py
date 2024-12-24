@@ -251,6 +251,7 @@ def get_signals():
                     if(W2_LO > W4_HC and W2_LO > W6_HC and W2_LO > W8_HC):
                         if(W6_LO < W4_LO and W6_HC > W4_HC):
                             if(W6_LO < W8_LO and W6_HC < W8_HC):
+                                if(length_W3 > length_W1 or length_W3 > length_W5):
                                     difference = abs((W1_LL - W4_LL)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'BUY '
@@ -261,6 +262,7 @@ def get_signals():
                     if(W2_HO < W4_LC and W2_HO < W6_LC and W2_HO < W8_LC):
                         if(W6_HO > W4_HO and W6_LC < W4_LC):
                             if(W6_HO > W8_LO and W6_LC > W8_LC):
+                                if(length_W3 > length_W1 or length_W3 > length_W5):
                                     difference = abs((W1_HH - W4_HH)/(symbol_info.point)) - spread
                                     if(difference >= 10):
                                         signal = 'SELL'
