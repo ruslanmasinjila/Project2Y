@@ -1,7 +1,7 @@
 ##########################################################################################
-# ProjectEW (PROJECT ELLIOTT WAVES)
+# ProjectEWQM (PROJECT ELLIOTT WAVES QUASIMODO)
 # AUTHOR: RUSLAN MASINJILA
-# USAGE: python ProjectEW.py <scan | step> <offset>
+# USAGE: python ProjectEWQM.py <scan | step> <offset>
 ##########################################################################################
 
 import MetaTrader5 as mt5
@@ -61,7 +61,7 @@ sleep_time          = 5
 
 offset              = 0
 if len(sys.argv) != 3:
-    print("USAGE: python ProjectEW.py <scan | step> <offset>")
+    print("USAGE: python ProjectEWQM.py <scan | step> <offset>")
     sys.exit(1)
     
 mode   = sys.argv[1]
@@ -251,22 +251,24 @@ def get_signals():
                     if(W2_LO > W4_HC and W2_LO > W6_HC and W2_LO > W8_HC):
                         if(W6_LO < W4_LO and W6_HC > W4_HC):
                             if(W6_LO < W8_LO and W6_HC < W8_HC):
-                                if(length_W3 > length_W1 or length_W3 > length_W5):
-                                    difference = abs((W1_LC - W8_HC)/(symbol_info.point)) - spread
-                                    if(difference >= 50):
-                                        signal = 'BUY '
-                                        beep = 1
+                                if(W8_LO < W4_HC):
+                                    if(length_W3 > length_W1 and length_W3 > length_W5):
+                                        difference = abs((W1_LC - W8_HC)/(symbol_info.point)) - spread
+                                        if(difference >= 50):
+                                            signal = 'BUY '
+                                            beep = 1
             
             if(W1_IS_G and W2_IS_R and W3_IS_G and W4_IS_R and W5_IS_G and W6_IS_R and W7_IS_G and W8_IS_R):
                 if(W1_LO < W2_LC):
                     if(W2_HO < W4_LC and W2_HO < W6_LC and W2_HO < W8_LC):
                         if(W6_HO > W4_HO and W6_LC < W4_LC):
                             if(W6_HO > W8_LO and W6_LC > W8_LC):
-                                if(length_W3 > length_W1 or length_W3 > length_W5):
-                                    difference = abs((W1_HC - W8_HC)/(symbol_info.point)) - spread
-                                    if(difference >= 50):
-                                        signal = 'SELL'
-                                        beep = 1
+                                if(W8_HO > W4_LC):
+                                    if(length_W3 > length_W1 and length_W3 > length_W5):
+                                        difference = abs((W1_HC - W8_HC)/(symbol_info.point)) - spread
+                                        if(difference >= 50):
+                                            signal = 'SELL'
+                                            beep = 1
             
 
 
