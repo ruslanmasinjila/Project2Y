@@ -251,7 +251,7 @@ def get_signals():
                     if(W2_LO > W4_HC and W2_LO > W6_HC and W2_LO > W8_HC):
                         if(W6_LO < W4_LO and W6_HC > W4_HC):
                             if(W6_LO < W8_LO and W6_HC < W8_HC):
-                                if(W8_LO < W4_HC):
+                                if(W8_LO < W4_LO):
                                     if(length_W3 > length_W1 and length_W3 > length_W5):
                                         difference = abs((W1_LC - W8_HC)/(symbol_info.point)) - spread
                                         if(difference >= 50):
@@ -263,7 +263,7 @@ def get_signals():
                     if(W2_HO < W4_LC and W2_HO < W6_LC and W2_HO < W8_LC):
                         if(W6_HO > W4_HO and W6_LC < W4_LC):
                             if(W6_HO > W8_LO and W6_LC > W8_LC):
-                                if(W8_HO > W4_LC):
+                                if(W8_HO > W4_HO):
                                     if(length_W3 > length_W1 and length_W3 > length_W5):
                                         difference = abs((W1_HC - W8_HC)/(symbol_info.point)) - spread
                                         if(difference >= 50):
