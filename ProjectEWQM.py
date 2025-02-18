@@ -138,14 +138,6 @@ def get_signals():
             W2_indices = sorted_merged_list[-7]
             W1_indices = sorted_merged_list[-8]
             
-            length_W8  = len(W8_indices)   
-            length_W7  = len(W7_indices)
-            length_W6  = len(W6_indices)
-            length_W5  = len(W5_indices)
-            length_W4  = len(W4_indices)
-            length_W3  = len(W3_indices)
-            length_W2  = len(W2_indices)
-            length_W1  = len(W1_indices)
             
             W8_head_open   = rates_frame['open'].iloc[W8_indices[-1]]
             W8_head_close  = rates_frame['close'].iloc[W8_indices[-1]]
@@ -241,12 +233,26 @@ def get_signals():
             W1_HH  = rates_frame['high'].iloc[W1_indices].max()
             W1_LL    = rates_frame['low'].iloc[W1_indices].min()
             W1_HC = rates_frame['close'].iloc[W1_indices].max()
-            W1_LC  = rates_frame['close'].iloc[W1_indices].min()           
+            W1_LC  = rates_frame['close'].iloc[W1_indices].min()  
+            
+            
+            
+            ##########################################################################################
+
+
+
+
+          
 
                              
             ##########################################################################################
             
             if(W1_IS_R and W2_IS_G and W3_IS_R and W4_IS_G and W5_IS_R and W6_IS_G and W7_IS_R and W8_IS_G):
+                
+                length_W1  = W1_HO-W1_LC 
+                length_W3  = W3_HO-W3_LC
+                length_W5  = W5_HO-W5_LC
+                             
                 if(W1_HO > W2_HC):
                     if(W2_LO > W4_HC and W2_LO > W6_HC and W2_LO > W8_HC):
                         if(W6_LO < W4_LO and W6_HC > W4_HC):
@@ -259,6 +265,11 @@ def get_signals():
                                             beep = 1
             
             if(W1_IS_G and W2_IS_R and W3_IS_G and W4_IS_R and W5_IS_G and W6_IS_R and W7_IS_G and W8_IS_R):
+                
+                length_W1  = W1_HC-W1_LO 
+                length_W3  = W3_HC-W3_LO
+                length_W5  = W5_HC-W5_LO
+                
                 if(W1_LO < W2_LC):
                     if(W2_HO < W4_LC and W2_HO < W6_LC and W2_HO < W8_LC):
                         if(W6_HO > W4_HO and W6_LC < W4_LC):
