@@ -1,7 +1,7 @@
 ##########################################################################################
 # Project2Y (PROJECT YIN AND YANG)
 # AUTHOR: RUSLAN MASINJILA
-# USAGE: python Project2Y.py <scan | step> <offset>
+# USAGE: python Project2Y.py <scan | step> <offset> <symbol>
 ##########################################################################################
 
 import MetaTrader5 as mt5
@@ -60,13 +60,16 @@ sleep_time          = 5
 
 
 offset              = 0
-if len(sys.argv) != 3:
-    print("USAGE: python Project2Y.py <scan | step> <offset>")
+if len(sys.argv) != 4:
+    print("USAGE: python Project2Y.py <scan | step> <offset> <symbol>")
     sys.exit(1)
     
 mode   = sys.argv[1]
 offset = int(sys.argv[2])
 
+if(sys.argv[3]!='all'):
+    symbols= [sys.argv[3]]
+    
 ##########################################################################################
 
 def get_consecutive_indices(lst):
