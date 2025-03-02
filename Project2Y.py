@@ -1,7 +1,7 @@
 ##########################################################################################
-# ProjectSE (PROJECT SELF ENGULFING)
+# Project2Y (PROJECT YIN AND YANG)
 # AUTHOR: RUSLAN MASINJILA
-# USAGE: python ProjectSE.py <scan | step> <offset>
+# USAGE: python Project2Y.py <scan | step> <offset>
 ##########################################################################################
 
 import MetaTrader5 as mt5
@@ -61,7 +61,7 @@ sleep_time          = 5
 
 offset              = 0
 if len(sys.argv) != 3:
-    print("USAGE: python ProjectSE.py <scan | step> <offset>")
+    print("USAGE: python Project2Y.py <scan | step> <offset>")
     sys.exit(1)
     
 mode   = sys.argv[1]
@@ -129,11 +129,35 @@ def get_signals():
             sorted_merged_list = sorted(merged_list, key=lambda x: x[0])
             ##########################################################################################
             
-            third_sequence_indices  = sorted_merged_list[-1]
-            second_sequence_indices = sorted_merged_list[-2]
-            first_sequence_indices  = sorted_merged_list[-3]
+            sixth_sequence_indices  = sorted_merged_list[-1]
+            fifth_sequence_indices  = sorted_merged_list[-2]
+            fourth_sequence_indices = sorted_merged_list[-3]
+            third_sequence_indices  = sorted_merged_list[-4]
+            second_sequence_indices = sorted_merged_list[-5]
+            first_sequence_indices  = sorted_merged_list[-6]
             
             
+            length_sixth_sequence   = len(sixth_sequence_indices)
+            length_fifth_sequence   = len(fifth_sequence_indices)
+            length_fourth_sequence  = len(fourth_sequence_indices)
+            length_third_sequence   = len(third_sequence_indices)
+            length_second_sequence  = len(second_sequence_indices)
+            length_first_sequence   = len(first_sequence_indices)
+            
+            sixth_sequence_head_open    = rates_frame['open'].iloc[sixth_sequence_indices[-1]]
+            sixth_sequence_head_close   = rates_frame['close'].iloc[sixth_sequence_indices[-1]]
+            sixth_sequence_is_green = ( sixth_sequence_head_close - sixth_sequence_head_open ) > 0
+            sixth_sequence_is_red   = ( sixth_sequence_head_close - sixth_sequence_head_open ) < 0
+            
+            fifth_sequence_head_open    = rates_frame['open'].iloc[fifth_sequence_indices[-1]]
+            fifth_sequence_head_close   = rates_frame['close'].iloc[fifth_sequence_indices[-1]]
+            fifth_sequence_is_green = ( fifth_sequence_head_close - fifth_sequence_head_open ) > 0
+            fifth_sequence_is_red   = ( fifth_sequence_head_close - fifth_sequence_head_open ) < 0
+            
+            fourth_sequence_head_open   = rates_frame['open'].iloc[fourth_sequence_indices[-1]]
+            fourth_sequence_head_close  = rates_frame['close'].iloc[fourth_sequence_indices[-1]]
+            fourth_sequence_is_green = ( fourth_sequence_head_close - fourth_sequence_head_open ) > 0
+            fourth_sequence_is_red   = ( fourth_sequence_head_close - fourth_sequence_head_open ) < 0
             
             third_sequence_head_open   = rates_frame['open'].iloc[third_sequence_indices[-1]]
             third_sequence_head_close  = rates_frame['close'].iloc[third_sequence_indices[-1]]
@@ -150,6 +174,28 @@ def get_signals():
             first_sequence_is_green = ( first_sequence_head_close -first_sequence_head_open ) > 0
             first_sequence_is_red   = ( first_sequence_head_close - first_sequence_head_open ) < 0
             
+            sixth_sequence_highest_open = rates_frame['open'].iloc[sixth_sequence_indices].max()
+            sixth_sequence_lowest_open  = rates_frame['open'].iloc[sixth_sequence_indices].min()
+            sixth_sequence_highest_high  = rates_frame['high'].iloc[sixth_sequence_indices].max()
+            sixth_sequence_lowest_low    = rates_frame['low'].iloc[sixth_sequence_indices].min()
+            sixth_sequence_highest_close = rates_frame['close'].iloc[sixth_sequence_indices].max()
+            sixth_sequence_lowest_close  = rates_frame['close'].iloc[sixth_sequence_indices].min()            
+            
+            fifth_sequence_highest_open = rates_frame['open'].iloc[fifth_sequence_indices].max()
+            fifth_sequence_lowest_open  = rates_frame['open'].iloc[fifth_sequence_indices].min()
+            fifth_sequence_highest_high  = rates_frame['high'].iloc[fifth_sequence_indices].max()
+            fifth_sequence_lowest_low    = rates_frame['low'].iloc[fifth_sequence_indices].min()
+            fifth_sequence_highest_close = rates_frame['close'].iloc[fifth_sequence_indices].max()
+            fifth_sequence_lowest_close  = rates_frame['close'].iloc[fifth_sequence_indices].min()
+
+            
+
+            fourth_sequence_highest_open = rates_frame['open'].iloc[fourth_sequence_indices].max()
+            fourth_sequence_lowest_open  = rates_frame['open'].iloc[fourth_sequence_indices].min()
+            fourth_sequence_highest_high  = rates_frame['high'].iloc[fourth_sequence_indices].max()
+            fourth_sequence_lowest_low    = rates_frame['low'].iloc[fourth_sequence_indices].min()
+            fourth_sequence_highest_close = rates_frame['close'].iloc[fourth_sequence_indices].max()
+            fourth_sequence_lowest_close  = rates_frame['close'].iloc[fourth_sequence_indices].min()
 
             third_sequence_highest_open = rates_frame['open'].iloc[third_sequence_indices].max()
             third_sequence_lowest_open  = rates_frame['open'].iloc[third_sequence_indices].min()
@@ -175,17 +221,39 @@ def get_signals():
                              
             ##########################################################################################
             
-            if(first_sequence_is_green and second_sequence_is_red and third_sequence_is_green):
-                if(third_sequence_lowest_open < first_sequence_lowest_low):
-                    if(third_sequence_highest_close > first_sequence_highest_high):
-                        signal = 'BUY ' 
-                        beep = 1
-
-            if(first_sequence_is_red and second_sequence_is_green and third_sequence_is_red):
+            if((first_sequence_is_red     and 
+                second_sequence_is_green  and 
+                third_sequence_is_red     and 
+                fourth_sequence_is_green  and
+                fifth_sequence_is_red     and
+                sixth_sequence_is_green)):
                 if(third_sequence_highest_open > first_sequence_highest_high):
                     if(third_sequence_lowest_close < first_sequence_lowest_low):
-                        signal = 'SELL' 
-                        beep = 1
+                        if(sixth_sequence_lowest_open < fourth_sequence_lowest_low):
+                            if(sixth_sequence_highest_close > fourth_sequence_highest_high): 
+                                if(sixth_sequence_highest_high < third_sequence_highest_open):
+                                    difference = abs((sixth_sequence_highest_close - third_sequence_highest_open)/(symbol_info.point)) - spread
+                                    if(difference >= 50):
+                                        signal = 'BUY '
+                                        beep = 1
+
+            if((first_sequence_is_green   and 
+                second_sequence_is_red    and 
+                third_sequence_is_green   and 
+                fourth_sequence_is_red    and
+                fifth_sequence_is_green   and
+                sixth_sequence_is_red)):
+                if(third_sequence_lowest_open < first_sequence_lowest_low):
+                    if(third_sequence_highest_close > first_sequence_highest_high):
+                        if(sixth_sequence_highest_open > fourth_sequence_highest_high):
+                            if(sixth_sequence_lowest_close < fourth_sequence_lowest_low):
+                                if(sixth_sequence_lowest_low > third_sequence_lowest_open):
+                                    difference = abs((sixth_sequence_lowest_close - third_sequence_lowest_open)/(symbol_info.point)) - spread
+                                    if(difference >= 50):
+                                        signal = 'SELL'
+                                        beep = 1
+                
+
 
 
             ##########################################################################################
