@@ -230,15 +230,14 @@ def get_signals():
                 fourth_sequence_is_green  and
                 fifth_sequence_is_red     and
                 sixth_sequence_is_green)):
-                if(third_sequence_highest_open > first_sequence_highest_high):
-                    if(third_sequence_lowest_close < first_sequence_lowest_low):
-                        if(sixth_sequence_lowest_open < fourth_sequence_lowest_low):
-                            if(sixth_sequence_highest_close > fourth_sequence_highest_high): 
-                                if(sixth_sequence_highest_high < third_sequence_highest_open):
-                                    difference = abs((sixth_sequence_highest_close - third_sequence_highest_open)/(symbol_info.point)) - spread
-                                    if(difference >= 50):
-                                        signal = 'BUY '
-                                        beep = 1
+                if(sixth_sequence_highest_high < first_sequence_lowest_low):
+                    difference = abs((sixth_sequence_highest_high - first_sequence_lowest_low)/(symbol_info.point)) - spread
+                    if(difference >= 50):
+                        if(sixth_sequence_highest_close > fourth_sequence_highest_high):
+                            if(fourth_sequence_highest_high > fifth_sequence_highest_high):
+                                if(first_sequence_lowest_low < second_sequence_lowest_low):
+                                    signal = 'BUY '
+                                    beep = 1
 
             if((first_sequence_is_green   and 
                 second_sequence_is_red    and 
@@ -246,15 +245,15 @@ def get_signals():
                 fourth_sequence_is_red    and
                 fifth_sequence_is_green   and
                 sixth_sequence_is_red)):
-                if(third_sequence_lowest_open < first_sequence_lowest_low):
-                    if(third_sequence_highest_close > first_sequence_highest_high):
-                        if(sixth_sequence_highest_open > fourth_sequence_highest_high):
-                            if(sixth_sequence_lowest_close < fourth_sequence_lowest_low):
-                                if(sixth_sequence_lowest_low > third_sequence_lowest_open):
-                                    difference = abs((sixth_sequence_lowest_close - third_sequence_lowest_open)/(symbol_info.point)) - spread
-                                    if(difference >= 50):
-                                        signal = 'SELL'
-                                        beep = 1
+                if(sixth_sequence_lowest_low > first_sequence_highest_high):
+                    difference = abs((sixth_sequence_lowest_low - first_sequence_highest_high)/(symbol_info.point)) - spread
+                    if(difference >= 50):
+                        if(sixth_sequence_lowest_close < fourth_sequence_lowest_low):
+                            if(fourth_sequence_lowest_low < fifth_sequence_lowest_low):
+                                if(first_sequence_highest_high > second_sequence_highest_high):
+                                    signal = 'SELL'
+                                    beep = 1
+
                 
 
 
