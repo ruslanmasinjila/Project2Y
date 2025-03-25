@@ -230,8 +230,8 @@ def get_signals():
                 fourth_sequence_is_green  and
                 fifth_sequence_is_red     and
                 sixth_sequence_is_green)):
-                if(sixth_sequence_highest_high < first_sequence_lowest_low):
-                    difference = abs((sixth_sequence_highest_high - first_sequence_lowest_low)/(symbol_info.point)) - spread
+                if(sixth_sequence_highest_high < third_sequence_highest_open):
+                    difference = abs((sixth_sequence_highest_high - third_sequence_highest_open)/(symbol_info.point)) - spread
                     if(difference >= 50):
                         if(sixth_sequence_highest_close > fourth_sequence_highest_high):
                             if(fourth_sequence_highest_high > fifth_sequence_highest_high):
@@ -245,8 +245,8 @@ def get_signals():
                 fourth_sequence_is_red    and
                 fifth_sequence_is_green   and
                 sixth_sequence_is_red)):
-                if(sixth_sequence_lowest_low > first_sequence_highest_high):
-                    difference = abs((sixth_sequence_lowest_low - first_sequence_highest_high)/(symbol_info.point)) - spread
+                if(sixth_sequence_lowest_low > third_sequence_lowest_open):
+                    difference = abs((sixth_sequence_lowest_low - third_sequence_lowest_open)/(symbol_info.point)) - spread
                     if(difference >= 50):
                         if(sixth_sequence_lowest_close < fourth_sequence_lowest_low):
                             if(fourth_sequence_lowest_low < fifth_sequence_lowest_low):
